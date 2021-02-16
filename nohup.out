@@ -1,0 +1,200 @@
+Watching for file changes with StatReloader
+[04/Feb/2021 16:19:15] "GET / HTTP/1.1" 200 2328
+Not Found: /style/common.css
+[04/Feb/2021 16:19:16] "GET /style/common.css HTTP/1.1" 404 2777
+Not Found: /style/login.css
+[04/Feb/2021 16:19:16] "GET /style/login.css HTTP/1.1" 404 2774
+[04/Feb/2021 16:21:35] "GET / HTTP/1.1" 200 2328
+Not Found: /style/login.css
+[04/Feb/2021 16:21:35] "GET /style/login.css HTTP/1.1" 404 2774
+Not Found: /style/common.css
+[04/Feb/2021 16:21:35] "GET /style/common.css HTTP/1.1" 404 2777
+[04/Feb/2021 16:21:35] "GET /static_url/Favicon.png HTTP/1.1" 200 11586
+[04/Feb/2021 16:21:37] "GET / HTTP/1.1" 200 2328
+Not Found: /style/common.css
+[04/Feb/2021 16:21:37] "GET /style/common.css HTTP/1.1" 404 2777
+Not Found: /style/login.css
+[04/Feb/2021 16:21:37] "GET /style/login.css HTTP/1.1" 404 2774
+[04/Feb/2021 16:21:42] "GET /auth/signup/ HTTP/1.1" 200 4283
+Not Found: /auth/signup/style/common.css
+[04/Feb/2021 16:21:42] "GET /auth/signup/style/common.css HTTP/1.1" 404 3228
+Not Found: /auth/signup/style/login.css
+[04/Feb/2021 16:21:42] "GET /auth/signup/style/login.css HTTP/1.1" 404 3225
+[04/Feb/2021 16:21:42] "GET /static_url/favicon.png HTTP/1.1" 200 11586
+[04/Feb/2021 16:21:44] "GET /auth/signup HTTP/1.1" 301 0
+[04/Feb/2021 16:21:44] "GET /auth/signup/ HTTP/1.1" 200 4283
+Not Found: /auth/signup/style/common.css
+[04/Feb/2021 16:21:44] "GET /auth/signup/style/common.css HTTP/1.1" 404 3228
+Not Found: /auth/signup/style/login.css
+[04/Feb/2021 16:21:44] "GET /auth/signup/style/login.css HTTP/1.1" 404 3225
+[04/Feb/2021 16:21:58] "POST /auth/signup/ HTTP/1.1" 200 3138
+Not Found: /auth/signup/style/common.css
+[04/Feb/2021 16:21:58] "GET /auth/signup/style/common.css HTTP/1.1" 404 3228
+Not Found: /auth/signup/style/login.css
+[04/Feb/2021 16:21:58] "GET /auth/signup/style/login.css HTTP/1.1" 404 3225
+Internal Server Error: /auth/signup/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/dist-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.6/dist-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/root/blog/users/views.py", line 42, in signup_view
+    user = User.objects.create_user(username, email, password)
+  File "/usr/local/lib/python3.6/dist-packages/django/contrib/auth/models.py", line 146, in create_user
+    return self._create_user(username, email, password, **extra_fields)
+  File "/usr/local/lib/python3.6/dist-packages/django/contrib/auth/models.py", line 135, in _create_user
+    raise ValueError('The given username must be set')
+ValueError: The given username must be set
+[04/Feb/2021 16:21:59] "POST /auth/signup/ HTTP/1.1" 500 71177
+Not Found: /favicon.ico
+[04/Feb/2021 16:22:00] "GET /favicon.ico HTTP/1.1" 404 2762
+Not Found: /auth/signup/style/common.css
+[04/Feb/2021 16:22:17] "GET /auth/signup/style/common.css HTTP/1.1" 404 3228
+Not Found: /auth/signup/style/login.css
+[04/Feb/2021 16:22:17] "GET /auth/signup/style/login.css HTTP/1.1" 404 3225
+Internal Server Error: /auth/signup/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/dist-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/usr/local/lib/python3.6/dist-packages/django/db/backends/sqlite3/base.py", line 413, in execute
+    return Database.Cursor.execute(self, query, params)
+sqlite3.IntegrityError: UNIQUE constraint failed: users_user.username
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/dist-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.6/dist-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/root/blog/users/views.py", line 42, in signup_view
+    user = User.objects.create_user(username, email, password)
+  File "/usr/local/lib/python3.6/dist-packages/django/contrib/auth/models.py", line 146, in create_user
+    return self._create_user(username, email, password, **extra_fields)
+  File "/usr/local/lib/python3.6/dist-packages/django/contrib/auth/models.py", line 140, in _create_user
+    user.save(using=self._db)
+  File "/usr/local/lib/python3.6/dist-packages/django/contrib/auth/base_user.py", line 67, in save
+    super().save(*args, **kwargs)
+  File "/usr/local/lib/python3.6/dist-packages/django/db/models/base.py", line 754, in save
+    force_update=force_update, update_fields=update_fields)
+  File "/usr/local/lib/python3.6/dist-packages/django/db/models/base.py", line 792, in save_base
+    force_update, using, update_fields,
+  File "/usr/local/lib/python3.6/dist-packages/django/db/models/base.py", line 895, in _save_table
+    results = self._do_insert(cls._base_manager, using, fields, returning_fields, raw)
+  File "/usr/local/lib/python3.6/dist-packages/django/db/models/base.py", line 935, in _do_insert
+    using=using, raw=raw,
+  File "/usr/local/lib/python3.6/dist-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/usr/local/lib/python3.6/dist-packages/django/db/models/query.py", line 1254, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "/usr/local/lib/python3.6/dist-packages/django/db/models/sql/compiler.py", line 1397, in execute_sql
+    cursor.execute(sql, params)
+  File "/usr/local/lib/python3.6/dist-packages/django/db/backends/utils.py", line 98, in execute
+    return super().execute(sql, params)
+  File "/usr/local/lib/python3.6/dist-packages/django/db/backends/utils.py", line 66, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "/usr/local/lib/python3.6/dist-packages/django/db/backends/utils.py", line 75, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/usr/local/lib/python3.6/dist-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/usr/local/lib/python3.6/dist-packages/django/db/utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/usr/local/lib/python3.6/dist-packages/django/db/backends/utils.py", line 84, in _execute
+    return self.cursor.execute(sql, params)
+  File "/usr/local/lib/python3.6/dist-packages/django/db/backends/sqlite3/base.py", line 413, in execute
+    return Database.Cursor.execute(self, query, params)
+django.db.utils.IntegrityError: UNIQUE constraint failed: users_user.username
+[04/Feb/2021 16:22:21] "POST /auth/signup/ HTTP/1.1" 500 161186
+[04/Feb/2021 16:22:21] "GET /auth/signup/ HTTP/1.1" 200 4283
+[04/Feb/2021 16:22:25] "GET / HTTP/1.1" 200 2328
+Not Found: /style/common.css
+[04/Feb/2021 16:22:25] "GET /style/common.css HTTP/1.1" 404 2777
+Not Found: /style/login.css
+[04/Feb/2021 16:22:25] "GET /style/login.css HTTP/1.1" 404 2774
+[04/Feb/2021 16:22:26] "GET /auth/login/ HTTP/1.1" 200 3138
+Not Found: /auth/login/style/common.css
+[04/Feb/2021 16:22:26] "GET /auth/login/style/common.css HTTP/1.1" 404 3225
+Not Found: /auth/login/style/login.css
+[04/Feb/2021 16:22:26] "GET /auth/login/style/login.css HTTP/1.1" 404 3222
+[04/Feb/2021 16:22:29] "POST /auth/login/ HTTP/1.1" 200 2813
+Not Found: /auth/login/style/login.css
+[04/Feb/2021 16:22:29] "GET /auth/login/style/login.css HTTP/1.1" 404 3222
+Not Found: /auth/login/style/common.css
+[04/Feb/2021 16:22:29] "GET /auth/login/style/common.css HTTP/1.1" 404 3225
+[04/Feb/2021 16:22:32] "GET /auth/logout/ HTTP/1.1" 302 0
+[04/Feb/2021 16:22:32] "GET /auth/login/ HTTP/1.1" 200 3138
+Not Found: /auth/login/style/login.css
+[04/Feb/2021 16:22:32] "GET /auth/login/style/login.css HTTP/1.1" 404 3222
+Not Found: /auth/login/style/common.css
+[04/Feb/2021 16:22:32] "GET /auth/login/style/common.css HTTP/1.1" 404 3225
+[04/Feb/2021 16:22:34] "GET /auth/signup/ HTTP/1.1" 200 4283
+Not Found: /auth/signup/style/login.css
+[04/Feb/2021 16:22:34] "GET /auth/signup/style/login.css HTTP/1.1" 404 3225
+Not Found: /auth/signup/style/common.css
+[04/Feb/2021 16:22:34] "GET /auth/signup/style/common.css HTTP/1.1" 404 3228
+[04/Feb/2021 16:28:25] "HEAD / HTTP/1.0" 200 2328
+/root/blog/users/views.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+February 04, 2021 - 16:18:55
+Django version 3.1.5, using settings 'blog.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+<QueryDict: {'csrfmiddlewaretoken': ['98TIlhamnBCFUDa8PcRI1n7D02Oq9xSlNGxOzUgcqNg2fLqEEmkCprzWha336hPZ'], 'username': ['1'], 'password': ['a'], 'lastname': ['홍'], 'firstname': ['길동'], 'email': ['kkk@kkk.kkk'], 'student_id': ['01000000000']}>
+<QueryDict: {'csrfmiddlewaretoken': ['7n04xwBR6rSALlGzqSkjBZM2ttwv9aIoLVEaL9HH9DwX6tW5f2NdZ3elKBL86UF2'], 'username': [''], 'password': ['']}>
+<QueryDict: {'csrfmiddlewaretoken': ['98TIlhamnBCFUDa8PcRI1n7D02Oq9xSlNGxOzUgcqNg2fLqEEmkCprzWha336hPZ'], 'username': ['1'], 'password': ['a'], 'lastname': ['홍'], 'firstname': ['길동'], 'email': ['kkk@kkk.kkk'], 'student_id': ['01000000000']}>
+인증성공
+Watching for file changes with StatReloader
+[04/Feb/2021 19:33:45] "GET / HTTP/1.1" 200 2328
+Not Found: /style/login.css
+[04/Feb/2021 19:33:45] "GET /style/login.css HTTP/1.1" 404 2774
+Not Found: /style/common.css
+[04/Feb/2021 19:33:45] "GET /style/common.css HTTP/1.1" 404 2777
+[04/Feb/2021 19:33:48] "GET /auth/signup/ HTTP/1.1" 200 4283
+Not Found: /auth/signup/style/common.css
+[04/Feb/2021 19:33:48] "GET /auth/signup/style/common.css HTTP/1.1" 404 3228
+Not Found: /auth/signup/style/login.css
+[04/Feb/2021 19:33:48] "GET /auth/signup/style/login.css HTTP/1.1" 404 3225
+Internal Server Error: /auth/signup/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/dist-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.6/dist-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/root/blog/users/views.py", line 48, in signup_view
+    return login_view(request, "users/login.html")
+TypeError: login_view() takes 1 positional argument but 2 were given
+[04/Feb/2021 19:34:19] "POST /auth/signup/ HTTP/1.1" 500 62140
+Not Found: /favicon.ico
+[04/Feb/2021 19:34:21] "GET /favicon.ico HTTP/1.1" 404 2762
+/root/blog/users/views.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+February 04, 2021 - 19:33:32
+Django version 3.1.5, using settings 'blog.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+<QueryDict: {'csrfmiddlewaretoken': ['gUv2AQOiAwXxKr7xxBDhyMtLsdrfSCVopRuH3RTgBiC24oDY6OmutdSUcjRymOXb'], 'username': ['test'], 'password': ['12345'], 'lastname': ['te'], 'firstname': ['st'], 'email': ['test@naver.com'], 'student_id': ['010852963']}>
+Watching for file changes with StatReloader
+[04/Feb/2021 19:35:04] "GET / HTTP/1.1" 200 2328
+Not Found: /style/common.css
+Not Found: /style/login.css
+[04/Feb/2021 19:35:04] "GET /style/login.css HTTP/1.1" 404 2774
+[04/Feb/2021 19:35:04] "GET /style/common.css HTTP/1.1" 404 2777
+[04/Feb/2021 19:35:08] "GET /auth/signup/ HTTP/1.1" 200 4283
+Not Found: /auth/signup/style/login.css
+[04/Feb/2021 19:35:08] "GET /auth/signup/style/login.css HTTP/1.1" 404 3225
+Not Found: /auth/signup/style/common.css
+[04/Feb/2021 19:35:08] "GET /auth/signup/style/common.css HTTP/1.1" 404 3228
+Internal Server Error: /auth/signup/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/dist-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.6/dist-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/root/blog/users/views.py", line 48, in signup_view
+    return login_view(request, "users/login.html")
+TypeError: login_view() takes 1 positional argument but 2 were given
+[04/Feb/2021 19:35:36] "POST /auth/signup/ HTTP/1.1" 500 62149

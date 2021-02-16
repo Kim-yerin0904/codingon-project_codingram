@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Codingram</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link href="style/common.css" rel="stylesheet" type="text/css" />
+    <link href="style/login.css" rel="stylesheet" type="text/css" />
+  
+    <link rel="shortcut icon" href="/static_url/favicon.png">
+    <link rel="icon" href="/static_url/favicon.png">
+   
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  </head>
+
+  <style>
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f1f0f0;
+}
+
+.box {
+    width: 360px;
+    height: 350px;
+
+    margin: 100px auto;
+    padding: 17px;
+
+    background-color: white;
+
+    align-content: center;
+     
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+
+    border: 1px solid lightgray;
+}
+
+.logo {
+    width: 180px;
+    margin: 30px 0;
+
+    align-self: center;
+
+    font-family: 'Pacifico', cursive;
+}
+
+.loginInfo {
+    width: 270px;
+    height: 40px;
+    margin: 5px auto;
+    padding: 13px;
+
+    display: block;
+
+    border: 1px solid rgb(226, 224, 224);
+    border-radius: 5px;
+
+    background-color: #fafafa;
+  
+    font-size: 14px;
+}
+
+.loginInfo::placeholder {
+    font-size: 12.5px;
+    color: #b1b0b0;    
+}
+
+.button {
+    width: 270px;
+    height: 33px;
+    margin: 10px auto;
+
+    color: white;
+    font-size: 14px;
+
+    background-color: #0073f6d2;
+
+    border: none;
+    border-radius: 5px;
+}
+
+.button2 {
+    width: 270px;
+    height: 33px;
+    margin: 10px auto;
+
+    color: white;
+    font-size: 14px;
+
+    background-color: #0073f6d2;
+    border: none;
+    border-radius: 5px;
+}
+
+.welcome_wd {
+    font-size: 20px;
+    color:black;
+    text-align: center;
+    width: 80%;
+    margin:auto;
+    margin-top:20px;
+    margin-bottom:20px;
+}
+
+
+
+  </style>
+
+  <body>
+
+    <div class="box">
+
+      <h1 class = "logo">Codingram</h1>
+
+      {% if user.is_authenticated %}
+      <!--Insert main page here!! -->
+
+      <h1 class = "welcome_wd">{{ user.username }}님 Codingram에 오신 것을 환영합니다!</h1>
+  
+      <a href = "{% url 'blog' %}"><button class ="button2"><strong>홈으로</strong></button></a>
+
+      <a href="{% url 'user:logout' %}"><button class ="button2"><strong>로그아웃</strong></button></a>
+
+
+      {% else %}
+      <!--Insert login page & signup here!!-->
+      <form action="" method="POST">
+          {% csrf_token %}
+          <input class="loginInfo" name="username" type="text" placeholder="전화번호, 사용자 이름 또는 이메일">
+          <input class="loginInfo" name="password" type="password" placeholder="비밀번호">
+          
+      </form>
+      <button class ="button" onclick="send()"><strong>로그인</strong></button>
+      <a href="{% url 'user:signup' %}"><button class ="button"><strong>회원가입</strong></button></a>
+
+      {% endif %}
+
+      
+      
+     
+      
+      <script>
+          function send() {
+          console.log("start");
+          fx = document.querySelector('form');
+          console.log(fx);
+          fx.submit();
+          }
+      </script>
+    
+    </div>
+  
+  </body>
+
+</html>

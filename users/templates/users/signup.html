@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Codingram</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link href="style/common.css" rel="stylesheet" type="text/css" />
+    <link href="style/login.css" rel="stylesheet" type="text/css" />
+  
+    <link rel="shortcut icon" href="/static_url/favicon.png">
+    <link rel="icon" href="/static_url/favicon.png">
+   
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  </head>
+
+  <style>
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f1f0f0;
+}
+
+.box {
+    width: 360px;
+    height: 610px;
+
+    margin: auto;
+    margin-top: 100px;
+    margin-bottom: 10px; 
+    padding: 17px;
+
+    background-color: white;
+
+    align-content: center;
+     
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+
+    border: 1px solid lightgray;
+}
+
+.logo {
+    width: 180px;
+    margin: 30px 0;
+
+    align-self: center;
+
+    font-family: 'Pacifico', cursive;
+}
+
+.SignupInfo {
+    width: 270px;
+    height: 40px;
+    margin: 5px auto;
+    padding: 13px;
+
+    display: block;
+
+    border: 1px solid rgb(226, 224, 224);
+    border-radius: 5px;
+
+    background-color: #fafafa;
+  
+    font-size: 14px;
+}
+
+.SignupInfo::placeholder {
+    font-size: 12.5px;
+    color: #b1b0b0;    
+}
+
+.button {
+    width: 270px;
+    height: 33px;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 15px;
+
+    color: white;
+    font-size: 14px;
+
+    background-color: #0073f6d2;
+    border: none;
+    border-radius: 5px;
+}
+
+.use_rule {
+    font-size: 12.5px;
+    color: #b1b0b0;
+    text-align: center;
+    width: 80%;
+}
+
+.box_2 {
+    width: 360px;
+    height: 60px;
+    
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 100px;
+    padding: 17px;
+
+    background-color: white;
+
+    align-content: center;
+     
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    
+    border: 1px solid lightgray;
+}
+
+.introduction {
+    font-size: 16px;
+    font-weight: bold;
+    color: #8e8e8e;
+    text-align: center;
+    margin-bottom: 15px;
+
+}
+
+  </style>
+
+  <body>
+
+    <div class="box">
+
+        <h1 class = "logo">Codingram</h1>
+
+        <h2 class="introduction">개발자들의 코드와 리뷰를 보려면<br>가입하세요.</h2>
+
+
+        <form action="" method="POST">
+        {%csrf_token %}
+
+        <input class="SignupInfo" name="username" type="text" placeholder="아이디">
+
+        <input class="SignupInfo" name="password" type="password" placeholder="비밀번호">
+
+        <input class="SignupInfo" name="lastname" type="text" placeholder="성">
+
+        <input class="SignupInfo" name="firstname" type="text" placeholder="이름">
+
+        <input class="SignupInfo" name="email" type="text" placeholder="이메일">
+
+        <input class="SignupInfo" name="student_id" type="text" placeholder="전화번호">
+        </form>
+
+        <a href ="#"><button class ="button" onclick="send(); success()"><strong>가입</strong></button></a>
+
+        <p class="use_rule">가입하면 Codingram의 <a target="_blank" href="https://help.instagram.com/581066165581870" tabindex="0">약관</a>, <a target="_blank" href="https://help.instagram.com/519522125107875" tabindex="0">데이터 정책</a> 및 <a target="_blank" href="https://help.instagram.com/1896641480634370?ref=ig" tabindex="0">쿠키 정책</a>에 동의하게 됩니다.</p>
+
+    </div>
+
+    <div class="box_2">
+        <p>계정이 있으신가요? <a href="{% url 'user:login' %}" tabindex="0">로그인</a></p>
+    </div>
+
+    <script>
+        function send() {
+            console.log("start");
+            fx = document.querySelector('form');
+            console.log(fx);
+            fx.submit();
+        }
+
+        function success() {
+            alert('회원가입이 완료되었습니다!');
+        }
+
+    </script>
+
+  </body>
+
+</html>

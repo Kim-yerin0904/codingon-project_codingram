@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+   <head>
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+      <title>@codingram | Portfolio</title>
+
+      <link rel="shortcut icon" href="/static_url/favicon.png">
+      <link rel="icon" href="/static_url/favicon.png">
+
+      <link rel="preconnect" href="https://fonts.gstatic.com">
+      <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+      <link rel="preconnect" href="https://fonts.gstatic.com">
+      <link href="https://fonts.googleapis.com/css2?family=Yeon+Sung&display=swap" rel="stylesheet">
+      
+      <style>
+        
+         .container {
+            font-family: 'Yeon Sung', cursive;
+         }
+
+         .box {
+             width: 150px;
+             height: 150px;
+             border-radius: 70%;
+             object-fit: cover;
+         }
+
+         .profile {
+          text-align: center;
+         }
+         
+         .portfolio {
+            font-family: 'Yeon Sung', cursive;
+            margin-top: 0px;
+            margin-bottom: 30px;
+         }
+
+         .logout{
+            background-color: lightgray;
+            border: none;
+      
+         }
+
+         .tableinput {
+            float: left;
+            padding-left: 50px;
+         }
+
+
+         .wrap {
+            margin: auto;
+            width: 900px;
+         }
+
+         .comment {
+            font-weight: bold;
+            color: blue;
+         }
+
+         .jumbotron {
+            height: 300px;
+         }
+
+         .posting-box {
+            margin: 10px auto 30px auto;
+            width: 500px;
+
+            border: 2px solid darkgrey;
+            border-radius: 5px;
+
+            padding: 20px;
+
+            display: none;
+         }
+         .card-columns {
+            width: 60%;
+            display: block;
+            margin: auto;
+         }
+
+         .card-img-top {
+            object-fit: cover;
+            height: 200px;
+            width:100%;
+            position: center;
+         }
+
+         .card-text{
+            height: 75px;
+         }
+
+         .nav-link {
+            font-family: 'Yeon Sung',cursive;
+         }
+
+         #posting-box-btn {
+            font-size: 15px;
+         }
+
+      </style>
+
+      <script>
+         function openclose() {
+            let status = $('#post-box').css('display');
+            if (status == 'block') {
+               $('#post-box').hide()
+               $('#posting-box-btn').text('Add')
+            } 
+            else {
+               $('#post-box').show()
+               $('#posting-box-btn').text('Close')
+            }
+         }
+
+      </script>
+      <script src="https://cdn.tiny.cloud/1/820jfwnykceoplh292z4m66cgsqxw5a7ilwofcrpvu60tb4a/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
+      <script>
+            tinymce.init({
+             selector: 'textarea#editor',
+             menubar: false
+            });
+      </script>
+ 
+
+   </head>
+
+   <body>
+      <!--상단 바-->
+      <nav class="navbar navbar-light bg-light">
+         <a class="navbar-brand" href="#">
+            <span style="font-family: 'Pacifico', cursive;">Codingram</span>
+         </a>
+         <form class="form-inline">
+            <a class="btn btn-primary logout" href="{% url 'user:logout' %}" type="button" style="font-weight:600;">로그아웃</a>
+            
+         </form>
+      </nav>
+
+      <!--프로필-->
+      <br><br>
+      <div class="container">
+         
+         <table class='profile' width="100%">
+            <tr style="height: 55px;">
+               {% csrf_token %}
+               <td rowspan='3' style="padding-left: 107px;"> <a href="{% url 'portfolio' %}"><img src="/static_url/insta.jpg" class='box' align='right'></a> </td>
+               <td class="tableinput" style="font-size:30px; margin-top: 27px;"> {{ user.username }} (@codingram)  </td>
+            </tr>
+
+            <tr style="height: 20px;">
+               <td class="tableinput">Posts : 3 </td>
+            </tr>
+
+            <tr>
+               <td class="tableinput">Intro : Team 7</td>
+            </tr>
+         </table>
+      </div>
+
+      <!--게시판 탭-->
+      <br><br><br>
+      <ul class="nav justify-content-center">
+      <li class="nav-item" role="presentation">
+         <a class="nav-link active" id="sharing-tab" data-toggle="tab" href="#code_sharing" role="tab"
+           aria-controls="code_sharing" aria-selected="true">게시글 목록</a>
+      </li>
+      <li class="nav-item" role="presentation">
+         <a class="nav-link" id="review-tab" data-toggle="tab" href="#code_review" role="tab"
+           aria-controls="code_review" aria-selected="false">게시글 작성</a>
+      </li>
+
+      </ul>
+
+      <!--게시판 탭 내용-->
+      <div class='tab-content profile'>
+         <!--게시판 목록-->
+         <div class="tab-pane fade show active" id="code_sharing" role="tabpanel" aria-labelledby="sharing-tab">
+            <h1 class="portfolio"><strong>LIST</strong></h1>
+            {% for list in postlist %}
+               <div class="card" style="width: 18rem; height: 18rem; display: inline-block;">
+                 <div class="card-body">
+                  <h5 class="card-title"><a href="{{list.pk}}">{{list.postname}}</a></h5>
+                 </div>
+               </div>            
+                           
+                        
+            {% endfor %}
+
+            
+         </div>
+         
+         <!--게시판 입력-->
+         <div class="tab-pane fade " id="code_review" role="tabpanel" aria-labelledby="review-tab">
+            <form method="POST">
+               {% csrf_token %}
+               <div class='col-lg-5 ' style="margin-left: auto; margin-right: auto;">
+                  <input type="text" name="postname" class="form-control mt-4 mb-2" placeholder="제목을 입력해주세요." required>
+               </div>
+               <div class="form-group col-lg-5 " style="margin-left: auto; margin-right: auto;">
+                  <textarea  class="form-control" rows="10" name="contents" placeholder="내용을 입력해주세요" required></textarea>
+               </div>
+               <button type="submit" class="btn btn-secondary mb-3">submit</button>
+            </form>
+               
+
+         </div>
+      </div>
+      
+
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
+        integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
+        crossorigin="anonymous"></script>
+
+   </body>
+
+</html>

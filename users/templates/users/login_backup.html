@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Codingram</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link href="style/common.css" rel="stylesheet" type="text/css" />
+    <link href="style/login.css" rel="stylesheet" type="text/css" />
+  
+    <link rel="shortcut icon" href="Favicon.png">
+    <link rel="icon" href="Favicon.png">
+   
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  </head>
+
+  <style>
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f1f0f0;
+}
+
+.box {
+    width: 360px;
+    height: 350px;
+
+    margin: 100px auto;
+    padding: 17px;
+
+    background-color: white;
+
+    align-content: center;
+     
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+
+    border: 1px solid lightgray;
+}
+
+.logo {
+    width: 180px;
+    margin: 30px 0;
+
+    align-self: center;
+
+    font-family: 'Pacifico', cursive;
+}
+
+.loginInfo {
+    width: 270px;
+    height: 40px;
+    margin: 5px auto;
+    padding: 13px;
+
+    display: block;
+
+    border: 1px solid rgb(226, 224, 224);
+    border-radius: 5px;
+
+    background-color: #fafafa;
+  
+    font-size: 14px;
+}
+
+.loginInfo::placeholder {
+    font-size: 12.5px;
+    color: #b1b0b0;    
+}
+
+.button {
+    width: 270px;
+    height: 33px;
+    margin: 10px auto;
+
+    color: white;
+    font-size: 14px;
+
+    background-color: #0073f6d2;
+
+    border: none;
+    border-radius: 5px;
+}
+
+  </style>
+
+  <body>
+
+    <div class="box">
+
+      <h1 class = "logo">Codingram</h1>
+
+
+      {% if user.is_authenticated %}
+      <!--Insert main page here!! -->
+      <a href="{% url 'user:logout' %}">로그아웃</a>
+
+
+      {% else %}
+      <form action="" method="POST">
+          {% csrf_token %}
+          <input class="loginInfo" name="username" type="text" placeholder="전화번호, 사용자 이름 또는 이메일">
+          <input class="loginInfo" name="password" type="password" placeholder="비밀번호">
+          <input type="submit" value="로그인">
+      </form>
+      <a href="{% url 'user:signup' %}">회원가입</a>
+
+      {% endif %}
+
+      
+      
+      <!--must replace to submit button -->
+      <a href = "http://101.101.209.235/profile.html"><button class ="button"><strong>로그인</strong></button></a>
+    
+    </div>
+  
+  </body>
+
+</html>
+
+
+
+
+
+
+
+
+
+<!--django original code -->
+<html>
+    <head>
+        <title>
+            로그인 페이지
+        </title>
+    </head>
+
+    <body>
+        <h1>로그인 페이지입니다.</h1>
+        <br>
+        {% if user.is_authenticated %}
+        <h1>로그인 성공!</h1><br>
+        <h1>{{ user.username }}님 환영합니다!</h1>
+        <a href="{% url 'user:logout' %}">로그아웃</a>
+        {% else %}
+
+        <form action="" method="POST">
+            {% csrf_token %}
+            <input name="username" type="text">
+            <input name="password" type="password">
+            <input type="submit" value="로그인">
+        </form>
+        <a href="{% url 'user:signup' %}">회원가입</a>
+
+
+        {% endif %}
+
+
+    </body>
+</html>
+
+
+
+<!--sign up page!! -->
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Codingram</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link href="style/common.css" rel="stylesheet" type="text/css" />
+    <link href="style/login.css" rel="stylesheet" type="text/css" />
+  
+    <link rel="shortcut icon" href="Favicon.png">
+    <link rel="icon" href="Favicon.png">
+   
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  </head>
+
+  <style>
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f1f0f0;
+}
+
+.box {
+    width: 360px;
+    height: 525px;
+
+    margin: auto;
+    margin-top: 100px;
+    margin-bottom: 10px; 
+    padding: 17px;
+
+    background-color: white;
+
+    align-content: center;
+     
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+
+    border: 1px solid lightgray;
+}
+
+.logo {
+    width: 180px;
+    margin: 30px 0;
+
+    align-self: center;
+
+    font-family: 'Pacifico', cursive;
+}
+
+.SignupInfo {
+    width: 270px;
+    height: 40px;
+    margin: 5px auto;
+    padding: 13px;
+
+    display: block;
+
+    border: 1px solid rgb(226, 224, 224);
+    border-radius: 5px;
+
+    background-color: #fafafa;
+  
+    font-size: 14px;
+}
+
+.SignupInfo::placeholder {
+    font-size: 12.5px;
+    color: #b1b0b0;    
+}
+
+.button {
+    width: 270px;
+    height: 33px;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 15px;
+
+    color: white;
+    font-size: 14px;
+
+    background-color: #0073f6d2;
+    border: none;
+    border-radius: 5px;
+}
+
+.use_rule {
+    font-size: 12.5px;
+    color: #b1b0b0;
+    text-align: center;
+    width: 80%;
+}
+
+.box_2 {
+    width: 360px;
+    height: 60px;
+    
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 100px;
+    padding: 17px;
+
+    background-color: white;
+
+    align-content: center;
+     
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    
+    border: 1px solid lightgray;
+}
+
+.introduction {
+    font-size: 16px;
+    font-weight: bold;
+    color: #8e8e8e;
+    text-align: center;
+    margin-bottom: 15px;
+
+}
+
+  </style>
+
+  <body>
+
+    <div class="box">
+
+      <h1 class = "logo">Codingram</h1>
+
+      <h2 class="introduction">개발자들의 코드와 리뷰를 보려면<br>가입하세요.</h2>
+
+      <input class="SignupInfo" type= "text" placeholder="휴대폰 번호 또는 이메일 주소">
+      <input class="SignupInfo" type= "name" placeholder="성명">
+      <input class="SignupInfo" type= "id" placeholder="사용자 이름">
+      <input class="SignupInfo" type= "password" placeholder="비밀번호">
+
+      <a href ="#"><button class ="button"><strong>가입</strong></button></a>
+
+      <p class="use_rule">가입하면 Codingram의 <a target="_blank" href="https://help.instagram.com/581066165581870" tabindex="0">약관</a>, <a target="_blank" href="https://help.instagram.com/519522125107875" tabindex="0">데이터 정책</a> 및 <a target="_blank" href="https://help.instagram.com/1896641480634370?ref=ig" tabindex="0">쿠키 정책</a>에 동의하게 됩니다.</p>
+    
+    </div>
+    <div class="box_2">
+        <p>계정이 있으신가요? <a href="http://101.101.209.235/login.html" tabindex="0">로그인</a></p>
+    </div>
+  
+  </body>
+
+</html>
+
+
+
+
+<!--sign up success!! -->
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Codingram</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link href="style/common.css" rel="stylesheet" type="text/css" />
+    <link href="style/login.css" rel="stylesheet" type="text/css" />
+  
+    <link rel="shortcut icon" href="Favicon.png">
+    <link rel="icon" href="Favicon.png">
+   
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  </head>
+
+  <style>
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f1f0f0;
+}
+
+.box {
+    width: 360px;
+    height: 350px;
+
+    margin: 100px auto;
+    padding: 17px;
+
+    background-color: white;
+
+    align-content: center;
+     
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+
+    border: 1px solid lightgray;
+}
+
+.logo {
+    width: 180px;
+    margin: 30px 0;
+
+    align-self: center;
+
+    font-family: 'Pacifico', cursive;
+}
+
+.welcome_wd {
+    font-size: 20px;
+    color:black;
+    text-align: center;
+    width: 80%;
+    margin:auto;
+    margin-top:20px;
+    margin-bottom:20px;
+}
+
+.button {
+    width: 270px;
+    height: 33px;
+    margin: 20px auto;
+
+    color: white;
+    font-size: 14px;
+
+    background-color: #0073f6d2;
+    border: none;
+    border-radius: 5px;
+}
+
+  </style>
+
+  <body>
+
+    <div class="box">
+
+      <h1 class = "logo">Codingram</h1>
+
+      <h1 class = "welcome_wd">원태경님 Codingram에 오신 것을 환영합니다!</h1>
+
+      <a href = "http://101.101.209.235/login.html"><button class ="button"><strong>로그인 하러 가기</strong></button></a>
+    
+    </div>
+  
+  </body>
+
+</html>
+
+<!--signup origin-->
+회원가입 페이지입니다.
+<br>
+
+<form action="" method="POST">
+    {%csrf_token %}
+
+    <p>아이디</p>
+    <input name="username" type="text">
+
+    <p>비밀번호</p>
+    <input name="password" type="password">
+
+    <p>성</p>
+    <input name="lastname" type="text">
+
+    <p>이름</p>
+    <input name="firstname" type="text">
+
+    <p>이메일</p>
+    <input name="email" type="text">
+
+    <p>학번</p>
+    <input name="student_id" type="text">
+    <br><br>
+    <input type="submit" value="회원가입">
+
+
+
+</form>
